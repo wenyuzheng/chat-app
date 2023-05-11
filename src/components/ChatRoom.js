@@ -26,28 +26,29 @@ const ChatRoom = ({ messages, socket }) => {
 
   return (
     <div>
-      <header>
-        <p>Hangout with Colleagues</p>
+      <header style={{ margin: 20 }}>
+        <h2>Chat Room</h2>
         <button onClick={handleLeaveChat}>LEAVE CHAT</button>
       </header>
 
-      <div>
-        {messages.map((message) =>
-          message.name === localStorage.getItem("userName") ? (
+      <div style={{ border: "black 1px solid", height: 400 }}>
+        {messages.map(
+          (message) => (
+            //   message.name === localStorage.getItem("username") ? (
+            //     <div key={message.id}>
+            //       <p>You</p>
+            //       <div>
+            //         <p>{message.text}</p>
+            //       </div>
+            //     </div>
+            //   ) : (
             <div key={message.id}>
-              <p>You</p>
-              <div>
-                <p>{message.text}</p>
-              </div>
-            </div>
-          ) : (
-            <div key={message.id}>
-              <p>{message.name}</p>
-              <div>
-                <p>{message.text}</p>
-              </div>
+              <p>
+                {message.name}: {message.text}
+              </p>
             </div>
           )
+          //   )
         )}
       </div>
 

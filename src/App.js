@@ -3,13 +3,15 @@ import Home from "./components/Home";
 import ChatPage from "./components/ChatPage";
 import socketIO from "socket.io-client";
 
+import "./App.css";
+
 const server = "http://localhost:4000";
 const socket = socketIO.connect(server);
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className="App">
         <Routes>
           <Route path="/" element={<Home socket={socket} />}></Route>
           <Route path="/chat" element={<ChatPage socket={socket} />}></Route>
