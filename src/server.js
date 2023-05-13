@@ -2,7 +2,7 @@ const server = require("http").createServer();
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000/", "https://chat-app-a74c75.netlify.app/"],
+    origin: ["http://localhost:3000", "https://chat-app-a74c75.netlify.app"],
   },
 });
 

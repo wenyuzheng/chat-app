@@ -41,11 +41,10 @@ const ChatRoom = ({ messages, socket, username }) => {
       </div>
 
       <div>
-        <form className="form" onSubmit={handleSendMessage}>
+        <form onSubmit={handleSendMessage}>
           <input
             type="text"
             placeholder="Write message..."
-            className="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />

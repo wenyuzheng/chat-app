@@ -5,9 +5,9 @@ const Home = ({ setUsername }) => {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState("");
 
-  const signIn = () => {
+  const signIn = (e) => {
+    e.preventDefault();
     if (userInput) {
-      //   localStorage.setItem("username", username);
       setUsername(userInput);
       navigate("/chat");
     }
@@ -16,13 +16,15 @@ const Home = ({ setUsername }) => {
   return (
     <div>
       <h2>Sign In</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-      />
-      <button onClick={signIn}>Sign In</button>
+      <form onSubmit={signIn}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        <button>Sign In</button>
+      </form>
     </div>
   );
 };
