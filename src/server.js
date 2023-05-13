@@ -1,23 +1,18 @@
-const express = require("express");
-const app = express();
-const PORT = 4000;
+const server = require("http").createServer();
 
-const http = require("http").Server(app);
-const cors = require("cors");
-
-app.use(cors());
-
-const socketIO = require("socket.io")(http, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000/", "https://chat-app-a74c75.netlify.app/"],
   },
 });
 
-socketIO.on("connection", (socket) => {
+const PORT = 4000;
+
+io.on("connection", (socket) => {
   console.log(`${socket.id} user just connected!`);
 
   socket.on("message", (data) => {
-    socketIO.emit("messageResponse", data);
+    io.emit("messageResponse", data);
   });
 
   socket.on("disconnect", () => {
@@ -25,12 +20,6 @@ socketIO.on("connection", (socket) => {
   });
 });
 
-app.get("/api", (req, res) => {
-  res.json({
-    message: "Hello world",
-  });
-});
-
-http.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });

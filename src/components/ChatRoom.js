@@ -31,24 +31,13 @@ const ChatRoom = ({ messages, socket, username }) => {
       </header>
 
       <div style={{ border: "black 1px solid", height: 400 }}>
-        {messages.map(
-          (message) => (
-            //   message.name === localStorage.getItem("username") ? (
-            //     <div key={message.id}>
-            //       <p>You</p>
-            //       <div>
-            //         <p>{message.text}</p>
-            //       </div>
-            //     </div>
-            //   ) : (
-            <div key={message.id}>
-              <p>
-                {message.name}: {message.text}
-              </p>
-            </div>
-          )
-          //   )
-        )}
+        {messages.map((message) => (
+          <div key={message.id}>
+            <p>
+              {message.name}: {message.text}
+            </p>
+          </div>
+        ))}
       </div>
 
       <div>
