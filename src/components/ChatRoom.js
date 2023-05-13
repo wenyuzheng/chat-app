@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ChatRoom = ({ messages, socket }) => {
+const ChatRoom = ({ messages, socket, username }) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (message.trim() && localStorage.getItem("username")) {
+    if (message.trim() && username) {
       socket.emit("message", {
         text: message,
-        name: localStorage.getItem("username"),
+        name: username,
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
@@ -19,7 +19,6 @@ const ChatRoom = ({ messages, socket }) => {
   };
 
   const handleLeaveChat = () => {
-    localStorage.removeItem("username");
     navigate("/");
     window.location.reload();
   };

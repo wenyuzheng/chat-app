@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ setUsername }) => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [userInput, setUserInput] = useState("");
 
   const signIn = () => {
-    if (username) {
-      localStorage.setItem("username", username);
+    if (userInput) {
+      //   localStorage.setItem("username", username);
+      setUsername(userInput);
       navigate("/chat");
     }
   };
@@ -18,8 +19,8 @@ const Home = () => {
       <input
         type="text"
         placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
       />
       <button onClick={signIn}>Sign In</button>
     </div>

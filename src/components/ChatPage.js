@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ChatRoom from "./ChatRoom";
 
-const ChatPage = ({ socket }) => {
+const ChatPage = ({ socket, username }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const ChatPage = ({ socket }) => {
 
   return (
     <div>
-      <ChatRoom messages={messages} socket={socket} />
+      <ChatRoom messages={messages} socket={socket} username={username} />
     </div>
   );
 };
